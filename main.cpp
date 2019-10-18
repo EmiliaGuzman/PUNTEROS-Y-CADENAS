@@ -57,12 +57,11 @@ void invertir_cad(char cadena[])
     }
 }
 
-int invertir_cadRecursiva(char *cadena,  char c, char *fin)
+int invertir_cadRecursiva(char *cadena,  char *fin)
 {
     char a;
-    c=*cadena;
     *fin = *(cadena + tam_cad(cadena) - 1);
-    if(*cadena=='\0')
+    if(fin < cadena)
     {
         return 0;
     }
@@ -70,23 +69,39 @@ int invertir_cadRecursiva(char *cadena,  char c, char *fin)
         a=*cadena;
         *cadena=*fin;
         *fin=a;
-        return invertir_cadRecursiva(*cadena, ++c, --fin);
+        return invertir_cadRecursiva(++cadena, --fin);
     }
 }
 
 void palindromo_cad(char cadena[])
 {
     char *fin=cadena+tam_cad(cadena)-1;
+    char *mitad = fin/2;
     while (fin==cadena)
     {
+        if (mitad == cadena){
+            cout << "Es palindromo";
         cadena++;
         fin --;
     }
     ///cout << "Es palindromo";
-    if (fin!=cadena){
+    if (mitad!= cadena){
         cout << "No es palindromo";
     }
 }
+    
+void palindromo_cadRecursiva(char *cadena, char *fin)
+{
+    char *fin=cadena+tam_cad(cadena)-1;
+    char *mitad = fin/2;
+    if (mitad!= cadena)
+    {
+        cout << "No es palindromo";}
+    else{
+        if(mitad == cadena){
+            palindromo_cadRecursiva( ++cadena, --fin);
+            cout << "Es palindromo;}
+        }
 
 int main()
 {
@@ -108,5 +123,6 @@ int main()
     invertir_cadRecursiva(cadena1, cadena1[0], tam_cad(cadena1));
     cout << cadena1;
     palindromo_cad(cadena1);
+    palindromo_cadRecursiva(cadena1);
 
 }
