@@ -103,6 +103,51 @@ void palindromo_cadRecursiva(char *cadena, char *fin)
             cout << "Es palindromo;}
         }
 
+bool palindromo_cad(char cadena[])
+{
+    char *fin=cadena+tam_cad(cadena)-1;
+    if(cadena == fin)
+    {
+        for(char *i=fin; i>=cadena; i--){
+            cadena++;
+            fin --;}
+        return true;
+    }
+
+    else{
+        return false;
+    }
+}
+
+bool palindromo_cad1(char cadena[])
+{
+    char *fin=cadena+tam_cad(cadena)-1;
+    for(char *i=fin; i>=cadena; i--){
+        for(char *j=cadena; j<=fin; i++)
+        {
+            if(cadena==fin)
+            {
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+    }
+}
+
+
+
+int main()
+{
+    char cadena[]="amanapanama";
+    cout << " ' " <<cadena<< " ' ";
+    cout << " posee " <<tam_cad(cadena)<< " caracteres"<< endl;
+    cout <<palindromo_cad(cadena);
+    cout <<palindromo_cad1(cadena);
+}
+
+        
 int main()
 {
     char cadena[]="Hola mundo";
