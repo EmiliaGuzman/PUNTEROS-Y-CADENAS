@@ -74,6 +74,20 @@ int invertir_cadRecursiva(char *cadena,  char c, char *fin)
     }
 }
 
+void palindromo_cad(char cadena[])
+{
+    char *fin=cadena+tam_cad(cadena)-1;
+    while (fin==cadena)
+    {
+        cadena++;
+        fin --;
+    }
+    ///cout << "Es palindromo";
+    if (fin!=cadena){
+        cout << "No es palindromo";
+    }
+}
+
 int main()
 {
     char cadena[]="Hola mundo";
@@ -93,5 +107,6 @@ int main()
     cout << " ' " <<cadena3<< " ' ";
     invertir_cadRecursiva(cadena1, cadena1[0], tam_cad(cadena1));
     cout << cadena1;
+    palindromo_cad(cadena1);
 
 }
