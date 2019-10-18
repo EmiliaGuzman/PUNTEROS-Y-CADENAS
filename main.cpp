@@ -57,6 +57,23 @@ void invertir_cad(char cadena[])
     }
 }
 
+int invertir_cadRecursiva(char *cadena,  char c, char *fin)
+{
+    char a;
+    c=*cadena;
+    *fin = *(cadena + tam_cad(cadena) - 1);
+    if(*cadena=='\0')
+    {
+        return 0;
+    }
+    else{
+        a=*cadena;
+        *cadena=*fin;
+        *fin=a;
+        return invertir_cadRecursiva(*cadena, ++c, --fin);
+    }
+}
+
 int main()
 {
     char cadena[]="Hola mundo";
@@ -74,5 +91,7 @@ int main()
     cout << " ' " <<cadena3<< " ' ";
     invertir_cad(cadena3);
     cout << " ' " <<cadena3<< " ' ";
+    invertir_cadRecursiva(cadena1, cadena1[0], tam_cad(cadena1));
+    cout << cadena1;
 
 }
