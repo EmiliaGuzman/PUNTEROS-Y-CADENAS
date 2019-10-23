@@ -73,91 +73,52 @@ int invertir_cadRecursiva(char *cadena,  char *fin)
     }
 }
 
-void palindromo_cad(char cadena[])
-{
-    char *fin=cadena+tam_cad(cadena)-1;
-    char *mitad = fin/2;
-    while (fin==cadena)
-    {
-        if (mitad == cadena){
-            cout << "Es palindromo";
-        cadena++;
-        fin --;
-    }
-    ///cout << "Es palindromo";
-    if (mitad!= cadena){
-        cout << "No es palindromo";
-    }
-}
-    
-void palindromo_cadRecursiva(char *cadena, char *fin)
-{
-    char *fin=cadena+tam_cad(cadena)-1;
-    char *mitad = fin/2;
-    if (mitad!= cadena)
-    {
-        cout << "No es palindromo";}
-    else{
-        if(mitad == cadena){
-            palindromo_cadRecursiva( ++cadena, --fin);
-            cout << "Es palindromo;}
-        }
-
-bool palindromo_cad(char cadena[])
-{
-    char *fin=cadena+tam_cad(cadena)-1;
-    if(cadena == fin)
-    {
-        for(char *i=fin; i>=cadena; i--){
-            cadena++;
-            fin --;}
-        return true;
-    }
-
-    else{
-        return false;
-    }
-}
-
-bool palindromo_cad1(char cadena[])
-{
-    char *fin=cadena+tam_cad(cadena)-1;
-    for(char *i=fin; i>=cadena; i--){
-        for(char *j=cadena; j<=fin; i++)
-        {
-            if(cadena==fin)
-            {
-                return true;
-            }
-            else{
-                return false;
-            }
-        }
-    }
-}
 ///CORRECTO
 bool palindromo_cad(char cadena[])
 {
     char *fin=cadena+tam_cad(cadena)-1;
-    while(cadena<=fin)
+    while(cadena<fin)
     {
-        if(cadena==fin){return true;}
+        if(*cadena!=*fin){return false;}
         cadena++;
         fin--;
     }
-    return false;
+    return true;
 }
 
+bool palindromo_cadRecursiva(char cadena[] , char *fin)
+{
+    if(*cadena!=*fin){return false;}
+    else{
+        palindromo_cadRecursiva(++cadena, --fin);
+        return true;}
+
+}
+        
 int main()
 {
-    char cadena[]="pplppa";
+    char cadena[]="Hola mundo";
     cout << " ' " <<cadena<< " ' ";
     cout << " posee " <<tam_cad(cadena)<< " caracteres"<< endl;
-
-    cout << " ' " <<cadena<< " ' ";
-    invertir_cad(cadena);
-    cout << " ' " <<cadena<< " ' ";
-
+    
+    char cadena1[]="Red";
+    cout << " ' " <<cadena1<< " ' ";
+    cout << " posee " <<tam_cadPunteros(cadena1)<< " caracteres"<< endl;
+    
+    char cadena2[]="Hola mundo";
+    cout << " ' " <<cadena2<< " ' ";
+    cout << " posee " <<tam_cadRecursiva(cadena2)<< " caracteres"<< endl;
+    
+    char cadena3[]="Wally";
+    cout << " ' " <<cadena3<< " ' ";
+    cout << " posee " <<tam_cadRecursivaPunteros(cadena3)<< " caracteres"<< endl;
+    cout << " ' " <<cadena3<< " ' ";
+    invertir_cad(cadena3);
+    cout << " ' " <<cadena3<< " ' ";
+    
+    invertir_cadRecursiva(cadena1, cadena1[0], tam_cad(cadena1));
+    cout << cadena1;
+    
     cout <<palindromo_cad(cadena);
     if(palindromo_cad(cadena)==true){
         cout << " Es palindromo"<< endl;
@@ -165,31 +126,8 @@ int main()
     else{
         cout << " No es palindromo" << endl;
     }
-
-}
-
-
-        
-int main()
-{
-    char cadena[]="Hola mundo";
-    cout << " ' " <<cadena<< " ' ";
-    cout << " posee " <<tam_cad(cadena)<< " caracteres"<< endl;
-    char cadena1[]="Red";
-    cout << " ' " <<cadena1<< " ' ";
-    cout << " posee " <<tam_cadPunteros(cadena1)<< " caracteres"<< endl;
-    char cadena2[]="Hola mundo";
-    cout << " ' " <<cadena2<< " ' ";
-    cout << " posee " <<tam_cadRecursiva(cadena2)<< " caracteres"<< endl;
-    char cadena3[]="Wally";
-    cout << " ' " <<cadena3<< " ' ";
-    cout << " posee " <<tam_cadRecursivaPunteros(cadena3)<< " caracteres"<< endl;
-    cout << " ' " <<cadena3<< " ' ";
-    invertir_cad(cadena3);
-    cout << " ' " <<cadena3<< " ' ";
-    invertir_cadRecursiva(cadena1, cadena1[0], tam_cad(cadena1));
-    cout << cadena1;
-    palindromo_cad(cadena1);
-    palindromo_cadRecursiva(cadena1);
+    
+    char *fin=cadena+tam_cad(cadena)-1;
+    cout << palindromo_cadRecursiva(cadena, fin);
 
 }
