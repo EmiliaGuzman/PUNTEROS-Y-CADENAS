@@ -135,17 +135,39 @@ bool palindromo_cad1(char cadena[])
         }
     }
 }
-
-
+///CORRECTO
+bool palindromo_cad(char cadena[])
+{
+    char *fin=cadena+tam_cad(cadena)-1;
+    while(cadena<=fin)
+    {
+        if(cadena==fin){return true;}
+        cadena++;
+        fin--;
+    }
+    return false;
+}
 
 int main()
 {
-    char cadena[]="amanapanama";
+    char cadena[]="pplppa";
     cout << " ' " <<cadena<< " ' ";
     cout << " posee " <<tam_cad(cadena)<< " caracteres"<< endl;
+
+    cout << " ' " <<cadena<< " ' ";
+    invertir_cad(cadena);
+    cout << " ' " <<cadena<< " ' ";
+
     cout <<palindromo_cad(cadena);
-    cout <<palindromo_cad1(cadena);
+    if(palindromo_cad(cadena)==true){
+        cout << " Es palindromo"<< endl;
+    }
+    else{
+        cout << " No es palindromo" << endl;
+    }
+
 }
+
 
         
 int main()
